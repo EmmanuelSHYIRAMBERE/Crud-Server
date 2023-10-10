@@ -1,11 +1,12 @@
-const database = require('../../utils/mockDatabse.js');
+import {NewsLetter} from '../../models';
 
-function addNewsletter (req,res) {
-    console.log(req.body, "Request body");
-    database.push(req.body);
-    res.status(201).json({
-        message: "NewsLetter created",
-    });
+export const addNewsletter = async (req, res) => {
+    try{
+        const product = await NewsLetter.create(req.body)
+        res.status(201).json(product)
+
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({message:error.message})
+    }
 };
-
-module.exports = addNewsletter;

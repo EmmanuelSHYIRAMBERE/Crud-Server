@@ -1,22 +1,20 @@
-const database = require('../../utils/mockDatabse.js');
+import database from '../../utils/mockDatabse.js';
+import {NewsLetter} from "../../models";
 
-function RemoveData(req, res) {
-    let requestId = req.params.id;
-  
-    // Find the index of the item to be deleted
-    const index = database.findIndex((item) => item.id == requestId);
-  
-    if (index !== -1) {
-      // Remove the item from the array
-      database.splice(index, 1);
-      res.status(204).send();
-    } else {
-      // If the item with the given ID is not found, return a 404 response
-      res.status(404).json({
-        message: "Newsletter not found",
-      });
-    }
+
+export const RemoveData = async (req, res) => {
+  try {
+    const {id} = req.params;
+    const product = await  NewsLetter.findByIdAndDelete(id);
+    if (!product) {
+        return res.status(404).json({message:`cannot find any product with ID ${id}`})
+    } 
+    res.status(200).json(product);
+    
+} catch (error) {
+    res.status(500).json({message:error.message})
+
+}
   };
 
 
-module.exports = RemoveData;
