@@ -1,4 +1,6 @@
 import express from "express";
+import { verifyToken } from "../middleware";
+import { admin } from "../middleware";
 
 const newsletterRouter = express.Router();
 
@@ -15,11 +17,14 @@ import {addNewsletter, getOneLetter, getAll, putData, UpdateData,RemoveData} fro
 // const putData  = require ("../controllers/newsletter/putData.js");
 // const RemoveData  = require ("../controllers/newsletter/RemoveData.js");
 
-newsletterRouter.get("/",getAll);
+
+newsletterRouter.use(verifyToken);
 
 newsletterRouter.get("/:id", getOneLetter);
 
-newsletterRouter.post("/", addNewsletter);
+newsletterRouter.get("/",getAll);
+
+newsletterRouter.post("/", admin, addNewsletter);
 
 newsletterRouter.put("/:id", putData);
 

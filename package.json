@@ -1,18 +1,21 @@
 {
-  "name": "express-server",
+  "name": "express-server-application",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec babel-node server.js",
     "serve": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "emashyirambere",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.6.0"
   },
   "devDependencies": {
@@ -22,5 +25,5 @@
     "@babel/preset-env": "^7.22.20",
     "nodemon": "^3.0.1"
   },
-  "description": ""
+  "description": "DATABASE CRUD OPERATIONS AND USER AUTHENTICATION "
 }
